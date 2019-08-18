@@ -104,18 +104,13 @@ public class PhoneActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        dref= FirebaseDatabase.getInstance().getReference();
+        dref= FirebaseDatabase.getInstance().getReference().child("phoneNumbers");
         dref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 phoneList.add(dataSnapshot.getValue(Phone.class));
                 mPhoneAdapter.notifyDataSetChanged();
+                mProgressDialog.dismiss();
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -132,6 +127,7 @@ public class PhoneActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
     }
 
     @Override
