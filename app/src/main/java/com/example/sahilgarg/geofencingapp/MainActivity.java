@@ -59,4 +59,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, QrActivity.class);
         startActivity(intent);
     }
+
+    public void startGeoFence(View view) {
+        Intent intent = new Intent(MainActivity.this, GeoActivity.class);
+        startActivity(intent);
+    }
 }

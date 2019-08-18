@@ -8,25 +8,35 @@
     tools:context="com.example.sahilgarg.geofencingapp.MainActivity">
 
     <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="168dp"
+        android:onClick="startQrActivity"
+        android:text="Scan QR Code" />
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="141dp"
+        android:layout_marginBottom="80dp"
         android:onClick="startPhoneActivity"
         android:text="Make Call"
         tools:layout_editor_absoluteX="143dp"
         tools:layout_editor_absoluteY="349dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_marginBottom="63dp"
-        android:text="Scan QR Code"
-        android:onClick="startQrActivity"/>
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:text="GeoFence"
+        android:onClick="startGeoFence"/>
 
 </RelativeLayout>
