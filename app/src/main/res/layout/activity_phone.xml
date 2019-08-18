@@ -4,15 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sahilgarg.geofencingapp.MainActivity">
+    tools:context="com.example.sahilgarg.geofencingapp.PhoneActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Make Call"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="349dp"
-        android:onClick="startPhoneActivity"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/phone_lv"
+    />
 
 </android.support.constraint.ConstraintLayout>
