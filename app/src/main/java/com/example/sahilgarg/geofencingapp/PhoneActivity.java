@@ -17,7 +17,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PhoneActivity extends AppCompatActivity {
 
@@ -41,6 +45,7 @@ public class PhoneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.activity_phone);
 
         mListView = (ListView) findViewById(R.id.phone_lv);
@@ -117,8 +122,19 @@ public class PhoneActivity extends AppCompatActivity {
             }
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                phoneList.remove(dataSnapshot.getValue(Phone.class));
+
+                String key = dataSnapshot.getValue(Phone.class).getPhone();
+
+                for (int i = 0; i < phoneList.size(); i++) {
+                    // Find the item to remove and then remove it by index
+                    if (phoneList.get(i).getPhone().equals(key)) {
+                        phoneList.remove(i);
+                        break;
+                    }
+                }
+
                 mPhoneAdapter.notifyDataSetChanged();
+                mProgressDialog.dismiss();
             }
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
@@ -158,5 +174,27 @@ public class PhoneActivity extends AppCompatActivity {
             // If Wi-Fi connected
         }
         return true;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(!hasFocus) {
+            // Close every kind of system dialog
+            Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+            sendBroadcast(closeDialog);
+        }
+    }
+
+
+    private final List blockedKeys = new ArrayList(Arrays.asList(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP));
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (blockedKeys.contains(event.getKeyCode())) {
+            return true;
+        } else {
+            return super.dispatchKeyEvent(event);
+        }
     }
 }
