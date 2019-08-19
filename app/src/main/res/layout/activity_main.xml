@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:keepScreenOn="true"
     tools:context="com.example.sahilgarg.geofencingapp.MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnGeoFence"
+        style="@style/AppTheme.MainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="168dp"
+        android:onClick="startGeoFence"
+        android:text="@string/title_geofence"
+        app:layout_constraintBottom_toTopOf="@id/btnScan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnScan"
+        style="@style/AppTheme.MainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="startQrActivity"
-        android:text="Scan QR Code" />
+        android:text="@string/title_scan_qr_code"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintEnd_toEndOf="@+id/btnGeoFence"
+        app:layout_constraintStart_toStartOf="@+id/btnGeoFence"
+        app:layout_constraintTop_toBottomOf="@id/btnGeoFence" />
 
     <Button
         android:id="@+id/button"
+        style="@style/AppTheme.MainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
         android:onClick="startPhoneActivity"
-        android:text="Make Call"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="349dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp"
-        android:text="GeoFence"
-        android:onClick="startGeoFence"/>
-
-</RelativeLayout>
+        android:text="@string/title_make_call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btnGeoFence"
+        app:layout_constraintStart_toStartOf="@id/btnGeoFence"
+        app:layout_constraintTop_toBottomOf="@+id/btnScan" />
+</android.support.constraint.ConstraintLayout>

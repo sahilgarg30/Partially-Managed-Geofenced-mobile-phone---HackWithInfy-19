@@ -16,7 +16,8 @@ public class Constants {
     public static final HashMap<String, LatLng> LANDMARKS = new HashMap<String, LatLng>();
     static {
         // San Francisco International Airport.
-        LANDMARKS.put("Infy", new LatLng(18.35515,73.42249));
+//        LANDMARKS.put("Infy", new LatLng(18.35515,73.42249));
+        LANDMARKS.put("Infy", new LatLng(18.595102,73.708252));
 
         // Googleplex.
         LANDMARKS.put("Japantown", new LatLng(17.59764,73.72692));

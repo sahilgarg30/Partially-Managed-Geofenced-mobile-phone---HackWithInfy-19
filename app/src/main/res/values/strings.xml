@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">GeoFencingApp</string>
+    <string name="name_label">Name</string>
+    <string name="address_label">Address</string>
+    <string name="title_geofence">GeoFence</string>
+    <string name="title_scan_qr_code">Scan QR Code</string>
+    <string name="title_make_call">Make Call</string>
+    <string name="btn_add_geofences">Add GeoFences</string>
+    <string name="geofence_info"><html><body style="text-align:justify;">Explain the function of Add Geofences button here. Geofencing combines awareness of the user\'s current location with awareness of the user\'s proximity to locations that may be of interest. The latitude, longitude, and radius define a geofence, creating a circular area, or fence, around the location of interest.</body></html></string>
+
 </resources>

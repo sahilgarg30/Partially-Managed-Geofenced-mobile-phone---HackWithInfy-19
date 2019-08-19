@@ -3,14 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:keepScreenOn="true"
-    tools:context="com.example.sahilgarg.geofencingapp.PhoneActivity">
+    android:background="@drawable/bg"
+    android:layout_height="match_parent">
 
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="?android:attr/actionBarSize"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:title="Contacts" />-->
+
+    <!--TODO: Use Recycler View!!!!-->
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/phone_lv"
-    />
-
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:keepScreenOn="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="com.example.sahilgarg.geofencingapp.PhoneActivity"
+        tools:listitem="@layout/listitem_phone" />
 </android.support.constraint.ConstraintLayout>

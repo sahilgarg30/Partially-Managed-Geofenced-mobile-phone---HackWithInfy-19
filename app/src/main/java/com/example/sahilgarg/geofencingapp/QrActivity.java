@@ -70,12 +70,16 @@ public class QrActivity extends AppCompatActivity {
                         //that means the encoded format not matches
                         //in this case you can display whatever data is available on the qrcode
                         //to a toast
-                        Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                         String[] arr = result.getContents().split("\\s+");
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String currentDateTime = dateFormat.format(new Date());
+                        textViewName.setText(arr[1]);
+                        textViewAddress.setText(arr[0]);
                         QrModal obj = new QrModal(arr[0],arr[1],arr[2],currentDateTime,98765445+"");
                         databaseReference.child(databaseReference.push().getKey()).setValue(obj);
+                        Toast.makeText(this, "Sucess!!", Toast.LENGTH_LONG).show();
+
                     }
                 }
             } else {
