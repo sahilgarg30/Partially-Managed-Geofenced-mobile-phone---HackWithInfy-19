@@ -10,9 +10,18 @@ Design and Develop a Mobile Application and a Management Console (WebApp).
 Suggested features for the mobile App:
  
 The App can scan QR Code, verify QR code and save details in DB
+
 The App should be able to call few specified Telephone No, only which will be configured for each device through Management Console (Web Application)
+
 The App should send the Telemetry data to the Management Console 
+
 The App should be geo fenced. So, if the mobile phone on which it is installed, is moved by more than a particular distance (15 meters), it will raise alarm on the App and also raise concern at the Management console.
+
 The App should be locked such that the users should not be able to open any App apart from this on the mobile phone it is installed. 
+
 The person should not be allowed disable, GPS, WIFI, Mobile Data or switch off the device without password.
+
 Map functionality can be used.
+
+
+The application and the webapp bundled was able to incorporate all these features, and secured 1st Runners up position at HackWithInfy'19, a national level hackathon with over 30 teams selected from over 1,18,000 participants across India. The prototype won a cash prize of INR 1,00,000.
