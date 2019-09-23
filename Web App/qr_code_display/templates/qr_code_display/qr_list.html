@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-1">
+    </div>
+    <div class="col-xl">
+        <h1 class="text-info text-center">Guest In-Out Details</h1>
+        <table class="table table-striped table-hover" id="ex-table">
+        	<thead>
+				<tr>
+					<th scope="col">Device ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Email</th>
+					<th scope="col">Time</th>
+				</tr>
+        	</thead>
+        	<tbody>
+				<!-- {% for key, value in object_list.items %}
+					<tr>
+						<td scope="col">{{ value.deviceId }}</td>
+						<td scope="col">{{ value.name }}</td>
+						<td scope="col">{{ value.phone }}</td>
+						<td scope="col">{{ value.email }}</td>
+						<td scope="col">{{ value.timestamp }}</td>
+					</tr>
+				{% endfor %} -->
+        	</tbody>
+        </table>
+    </div>
+{% endblock %}

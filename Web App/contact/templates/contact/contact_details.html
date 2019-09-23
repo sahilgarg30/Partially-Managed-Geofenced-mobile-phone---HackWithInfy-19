@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-xl">
+           <h1 class="text-info text-center">Emergency Contact Numbers</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for item in object_list %}
+                        <tr>
+                            <td> {{ item.name }} </td>
+                            <td> {{ item.phone }} </td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-danger btn-sm"><a href="{% url 'contact:delete' id=item.id %}" class="text-danger">Delete</a></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+            </tbody>
+        </table>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="name" placeholder="Name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+                    </div>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags %}
+                            <div class="col">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <br>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Add Another Phone Number</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

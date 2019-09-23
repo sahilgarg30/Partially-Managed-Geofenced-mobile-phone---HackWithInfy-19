@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-8">
+            {% if object_list == 0 %}
+                <h1 class="text-success text-center">Restrictions are Disabled</h1>
+            {% else %}
+                <h1 class="text-danger text-center">Restrictions are Enabled</h1>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3"></div>
+            <div class="col-8">
+                <button type="button" class="btn btn-primary btn-lg btn-block"><a href="{% url 'block:toggle' %}" class="text-white">Change Status</a></button>
+            </div>
+    </div>
+{% endblock %}

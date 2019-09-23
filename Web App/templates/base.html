@@ -1,0 +1,97 @@
+<!doctype html>
+{% load staticfiles %}
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '.css/main.css' %}">
+    <title>HackWithInfy - Home</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">#HackWithInfy</a>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar-primary" style="margin-top: 5px;">
+      <ul class="navbar-primary-menu">
+        <li>
+          <a href="{% url 'qr_code_display:qr_list' %}" style="border-top:solid 1px white;"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Home</span></a>
+          <a href="{% url 'contact:contact_details' %}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Emergency Contacts</span></a>
+          <a id="toggle" href="{% url 'block:block' %}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Toggle Status</span></a>
+          <a href="{% url 'geofencing:geofencing' %}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Geofencing</span></a>
+          <a href="{% url 'battery:battery' %}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Battery</span></a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBq9j3Fd9cO6ox6OV9hMKjhPy7_aUpjHqU",
+        authDomain: "hackathon-team-13.firebaseapp.com",
+        databaseURL: "https://hackathon-team-13.firebaseio.com",
+        projectId: "hackathon-team-13",
+        storageBucket: "",
+        messagingSenderId: "780498370702",
+        appId: "1:780498370702:web:b006adf31cceaa69"
+      }
+        
+        firebase.initializeApp(config);
+      
+       var qrCode = firebase.database().ref('qrCode');
+        qrCode.on('value', function(snapshot){
+            if(snapshot.exists()){
+                var content = '';
+                snapshot.forEach(function(data){
+                    var val = data.val();
+                    content +='<tr>';
+                    content += '<td scope="col">' + val.deviceId + '</td>';
+                    content += '<td scope="col">' + val.name + '</td>';
+                    content += '<td scope="col">' + val.phone + '</td>';
+                    content += '<td scope="col">' + val.email + '</td>';
+                    content += '<td scope="col">' + val.timestamp + '</td>';
+                    content += '</tr>';
+                });
+                $('#ex-table tbody').html(content);
+            }
+        });
+        
+        var Location = firebase.database().ref('Location');
+        Location.on('value', function(snapshot){
+            if(snapshot.exists()){
+                var content = '';
+                snapshot.forEach(function(data){
+                    var key = data.key;
+                    var val = data.val();
+                    if(val=='Dangerous')
+                    {
+                      alert("Your device with ID"+key+"is out of safe zone");
+                    }
+                    content +='<tr>';
+                    content += '<td scope="col">' + key + '</td>';
+                    content += '<td scope="col">' + val + '</td>';
+                    content += '</tr>';
+                });
+                $('#safe-table tbody').html(content);
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static '.js/main.js' %}"></script>
+  </body>
+</html>
